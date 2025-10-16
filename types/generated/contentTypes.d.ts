@@ -467,6 +467,42 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGooglesheetGooglesheet extends Struct.CollectionTypeSchema {
+  collectionName: 'googlesheets';
+  info: {
+    displayName: 'googlesheet';
+    pluralName: 'googlesheets';
+    singularName: 'googlesheet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bec601: Schema.Attribute.String;
+    CGPA: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    gender: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::googlesheet.googlesheet'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    percentage: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    result: Schema.Attribute.String;
+    sem: Schema.Attribute.String;
+    SGPA: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usn: Schema.Attribute.String;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -978,6 +1014,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::googlesheet.googlesheet': ApiGooglesheetGooglesheet;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
